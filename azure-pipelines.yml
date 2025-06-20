@@ -35,6 +35,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'AzureDjangoDeploy'       # Name of service connection
-    appName: 'mydjangoapp123'                    # Your App Service name
+    azureSubscription: 'az_pipeline'       # Name of service connection
+    appName: 'azure-pipeline'                    # Your App Service name
     package: '$(Build.ArtifactStagingDirectory)/app.zip'
