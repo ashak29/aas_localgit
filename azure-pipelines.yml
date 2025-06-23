@@ -13,12 +13,12 @@ steps:
   inputs:
     versionSpec: '$(pythonVersion)'
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    python manage.py collectstatic --noinput
-    python manage.py migrate --noinput
-  displayName: 'Install dependencies and prepare app'
+# - script: |
+#     python -m pip install --upgrade pip
+#     pip install -r requirements.txt
+#     python manage.py collectstatic --noinput
+#     python manage.py migrate --noinput
+#   displayName: 'Install dependencies and prepare app'
 
 - task: ArchiveFiles@2
   inputs:
