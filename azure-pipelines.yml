@@ -4,7 +4,6 @@ trigger:
 pool:
   name: default
 
-
 variables:
   pythonVersion: '3.11'
 
@@ -12,17 +11,10 @@ steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(pythonVersion)'
-
-# - script: |
-#     python -m pip install --upgrade pip
-#     pip install -r requirements.txt
-#     python manage.py collectstatic --noinput
-#     python manage.py migrate --noinput
-#   displayName: 'Install dependencies and prepare app'
-
+    
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '.'
+    rootFolderOrFile: '$(Build.SourcesDirectory)'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/app.zip'
@@ -36,6 +28,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'az_pipeline'       # Name of service connection
-    appName: 'azure-pipeline'                    # Your App Service name
+    azureSubscription: 'az_pipeline'
+    appName: 'azure-pipeline'
     package: '$(Build.ArtifactStagingDirectory)/app.zip'
